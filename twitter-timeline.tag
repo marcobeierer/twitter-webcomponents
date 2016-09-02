@@ -1,5 +1,6 @@
 <twitter-timeline>
 	<ul>
+		<li if={ tweets.length == 0 }>Loading tweets. Please wait a moment.</li>
 		<li each={ tweet, i in tweets }><raw content="{ tweet }" /></li>
 	</ul>
 
@@ -9,17 +10,17 @@
 		self.tweets = [];
 
 		var done = function(rawTweets) {
-			$.each(rawTweets, function(index, rawTweet) {
+			jQuery.each(rawTweets, function(index, rawTweet) {
 				var text = rawTweet.text;
 
 				// replace url shortener links:
-				$.each(rawTweet.entities.urls, function(index2, url) {
+				jQuery.each(rawTweet.entities.urls, function(index2, url) {
 					var link = '<a href="' + url.expanded_url + '">' + url.display_url + '</a>';
 					text = text.replace(url.url, link);
 				});
 
 				// remove image links:
-				$.each(rawTweet.entities.media, function(index2, media) {
+				jQuery.each(rawTweet.entities.media, function(index2, media) {
 					text = text.replace(media.url, '');
 				});
 
@@ -34,7 +35,7 @@
 			self.update();
 		}
 
-		$.ajax({
+		jQuery.ajax({
 			method: 'GET',
 			url: 'https://api.marcobeierer.com/twitter/v1/timeline',
 		})
