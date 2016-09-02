@@ -24,7 +24,10 @@
 					text = text.replace(media.url, '');
 				});
 
-				self.tweets.push(text);
+				var datex = new Date(Date.parse(rawTweet.created_at.replace(/( +)/, ' UTC$1'))).toLocaleString();
+				var dateHTML = '<span class="datetime">' + datex + '</span>';
+
+				self.tweets.push(dateHTML + text);
 			});
 
 			self.update();
