@@ -1,4 +1,4 @@
-<timeline>
+<twitter-timeline>
 	<ul>
 		<li each={ tweet, i in tweets }><raw content="{ tweet }" /></li>
 	</ul>
@@ -31,6 +31,7 @@
 
 		var fail = function() {
 			self.tweets.push('An error occurred, it was not possible to load the tweets.');
+			self.update();
 		}
 
 		$.ajax({
@@ -40,4 +41,4 @@
 		.done(done)
 		.fail(fail);
 	</script>
-</timeline>
+</twitter-timeline>
