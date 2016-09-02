@@ -8,6 +8,7 @@
 		var self = this;
 
 		self.tweets = [];
+		self.count = opts.count || '0'; // 0 = infinite
 
 		var done = function(rawTweets) {
 			jQuery.each(rawTweets, function(index, rawTweet) {
@@ -40,7 +41,7 @@
 
 		jQuery.ajax({
 			method: 'GET',
-			url: 'https://api.marcobeierer.com/twitter/v1/timeline',
+			url: 'https://api.marcobeierer.com/twitter/v1/timeline?count=' + self.count,
 		})
 		.done(done)
 		.fail(fail);
