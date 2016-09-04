@@ -15,15 +15,21 @@
 				var text = rawTweet.text;
 
 				// replace url shortener links:
-				jQuery.each(rawTweet.entities.urls, function(index2, url) {
-					var link = '<a href="' + url.expanded_url + '">' + url.display_url + '</a>';
-					text = text.replace(url.url, link);
-				});
+				var urlsx = rawTweet.entities.urls;
+				if (urls != undefined) {
+					jQuery.each(urlsx, function(index2, url) {
+						var link = '<a href="' + url.expanded_url + '">' + url.display_url + '</a>';
+						text = text.replace(url.url, link);
+					});
+				}
 
 				// remove image links:
-				jQuery.each(rawTweet.entities.media, function(index2, media) {
-					text = text.replace(media.url, '');
-				});
+				var mediax = rawTweet.entities.media;
+				if (mediax != undefined) {
+					jQuery.each(mediax, function(index2, media) {
+						text = text.replace(media.url, '');
+					});
+				}
 
 				var datex = new Date(Date.parse(rawTweet.created_at.replace(/( +)/, ' UTC$1'))).toLocaleString();
 				var dateHTML = '<span class="datetime">' + datex + '</span>';
