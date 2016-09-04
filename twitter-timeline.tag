@@ -16,7 +16,7 @@
 
 				// replace url shortener links:
 				var urlsx = rawTweet.entities.urls;
-				if (urls != undefined) {
+				if (urlsx != undefined) {
 					jQuery.each(urlsx, function(index2, url) {
 						var link = '<a href="' + url.expanded_url + '">' + url.display_url + '</a>';
 						text = text.replace(url.url, link);
